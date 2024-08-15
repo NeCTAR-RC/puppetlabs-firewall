@@ -668,12 +668,6 @@ Puppet::Type.newtype(:firewall) do
         PUPPETCODE
       end
 
-      if ['accept', 'reject', 'drop'].include?(value.downcase)
-        raise ArgumentError, <<-PUPPETCODE
-          Jump destination should not be one of ACCEPT, REJECT or DROP. Use
-          the action property instead.
-        PUPPETCODE
-      end
     end
   end
 
