@@ -792,7 +792,7 @@ Puppet::Type.type(:firewall).provide :iptables, parent: Puppet::Provider::Firewa
 
     # If the jump parameter is set to one of: ACCEPT, REJECT or DROP then
     # we should set the action parameter instead.
-    if ['ACCEPT', 'REJECT', 'DROP'].include?(hash[:jump])
+    if ['ACCEPT', 'REJECT', 'DROP', 'accept', 'reject', 'drop'].include?(hash[:jump])
       hash[:action] = hash[:jump].downcase
       hash.delete(:jump)
     end
