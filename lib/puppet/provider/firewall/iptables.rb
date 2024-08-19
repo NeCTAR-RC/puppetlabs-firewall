@@ -778,7 +778,6 @@ Puppet::Type.type(:firewall).provide :iptables, parent: Puppet::Provider::Firewa
     # we should set the action parameter instead.
     if ['ACCEPT', 'REJECT', 'DROP'].include?(hash[:jump])
       hash[:action] = hash[:jump].downcase
-      hash.delete(:jump)
     end
     hash
   end
@@ -841,6 +840,14 @@ Puppet::Type.type(:firewall).provide :iptables, parent: Puppet::Provider::Firewa
     end
 
     complex_args = [:ipset, :dst_type, :src_type]
+
+    #if ['accept', 'reject', 'drop'].include?(resource[:jump])
+    #  resource[:jump] = resource[:jump].to_s.upcase
+    #end
+    if ['accept', 'reject', 'drop'].include?(resource[:jump])
+      resource[:action] = resource[:jump]
+      resource.delete(:jump)
+    end
 
     resource_list.each do |res|
       resource_value = nil

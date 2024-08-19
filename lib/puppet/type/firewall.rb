@@ -641,6 +641,15 @@ Puppet::Type.newtype(:firewall) do
       If you set both 'accept' and 'jump' parameters, you will get an error as
       only one of the options should be set.
     PUPPETCODE
+    munge do |value|
+      if ['accept', 'drop', 'reject'].include? @resource[:action]
+        value = @resource[:action].to_s.upcase
+      end
+      if ['accept', 'drop', 'reject'].include? value
+        value = value.to_s.upcase
+      end
+      value
+    end
 
     validate do |value|
       unless %r{^[a-zA-Z0-9\-_]+$}.match?(value)
