@@ -674,12 +674,12 @@ Puppet::Type.type(:firewall).provide :iptables, parent: Puppet::Provider::Firewa
     # Our type prefers hyphens over colons for ranges so ...
     # Iterate across all ports replacing colons with hyphens so that ranges match
     # the types expectations.
-    [:dport, :sport, :port].each do |prop|
-      next unless hash[prop]
-      hash[prop] = hash[prop].map do |elem|
-        elem.tr(':', '-')
-      end
-    end
+    #[:dport, :sport, :port].each do |prop|
+    #  next unless hash[prop]
+    #  hash[prop] = hash[prop].map do |elem|
+    #    elem.tr(':', '-')
+    #  end
+    #end
     hash[:length]&.tr!(':', '-')
 
     # Invert any rules that are prefixed with a '!'

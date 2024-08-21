@@ -83,6 +83,7 @@ module Puppet::Util::Firewall
 
     m = value.to_s.match(%r{^(!\s+)?(\S+)})
     return "#{m[1]}#{m[2]}" if %r{^\d+(-\d+)?$}.match?(m[2])
+    return "#{m[1]}#{m[2]}" if %r{^\d+(:\d+)?$}.match?(m[2])
     "#{m[1]}#{Socket.getservbyname(m[2], proto)}"
   end
 
