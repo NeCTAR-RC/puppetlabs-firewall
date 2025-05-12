@@ -11,7 +11,7 @@ class Puppet::Provider::Firewall::Firewall
   $list_command = {
     'IPv4' => 'iptables-save | grep -v neutron-linuxbri',
     'iptables' => 'iptables-save',
-    'IPv6' => 'ip6tables-save | grep -v neutron-linuxbri',
+    'IPv6' => 'ip6tables-save | grep -v neutron-linuxbri || true',
     'ip6tables' => 'ip6tables-save'
   }
   # Regex used to divide output of$list_command between tables
