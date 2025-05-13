@@ -9,7 +9,7 @@ class Puppet::Provider::Firewall::Firewall
   # Command to list all chains and rules
   # $list_command = 'iptables-save'
   $list_command = {
-    'IPv4' => 'iptables-save | grep -v neutron-linuxbri',
+    'IPv4' => 'iptables-save | grep -v neutron-linuxbri || true',
     'iptables' => 'iptables-save',
     'IPv6' => 'ip6tables-save | grep -v neutron-linuxbri || true',
     'ip6tables' => 'ip6tables-save'
